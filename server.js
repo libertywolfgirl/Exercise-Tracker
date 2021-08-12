@@ -47,10 +47,12 @@ const userSchema = new Schema({
   exercise: [
     {
       description: {
-        type: String
+        type: String,
+        required: true
       },
       duration: {
-        type: Number
+        type: Number,
+        required: true
       },
       date: {
         type: Date
@@ -101,7 +103,10 @@ app.post("/api/users/:_id/exercises", async function(req, res) {
   const exercise = { description, duration, date };
 
   try {
-    let findOne = await User.findOneAndUpdate(
+    let findOne = await User.findOneAndUpdate(_id, exercise, {
+      new: true
+    }
+      /*
       {
         _id
       },
@@ -110,7 +115,7 @@ app.post("/api/users/:_id/exercises", async function(req, res) {
           exercise
         },
         new: true
-      }
+      }*/
     );
 
     if (findOne) {
