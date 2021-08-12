@@ -61,4 +61,21 @@ const User = mongoose.model("User", userSchema);
 // User Routes
 app.post('/api/users', async function (req, res) {
   const { username: reqUsername } = req.body;
+  try {
+    let findOne = await User.findOne({
+      username: reqUsername
+    });
+    if (findOne) {
+      res.send('Username already taken. Please choose another one.');
+    } else {
+      const user = new User({
+        username: reqUsername,
+        exercise: []
+      });
+      await user.save();
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json('Server error...');
+  }
 });
