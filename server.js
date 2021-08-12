@@ -34,3 +34,13 @@ connection.on('error', console.error.bind(console, 'connection error:'));
 connection.once('open', () => {
   console.log('MongoDB database connection established successfully');
 });
+
+// User Schema
+const Schema = mongoose.Schema;
+const userSchema = new Schema({
+  original_url: String,
+  short_url: String
+});
+const User = mongoose.model('User', userSchema);
+
+// User Routes
