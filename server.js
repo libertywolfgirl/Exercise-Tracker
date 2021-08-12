@@ -37,6 +37,7 @@ connection.once("open", () => {
 
 // User Schema
 const Schema = mongoose.Schema;
+
 const userSchema = new Schema({
   username: {
     type: String,
@@ -56,26 +57,62 @@ const userSchema = new Schema({
     }
   ]
 });
+
 const User = mongoose.model("User", userSchema);
 
 // User Routes
-app.post('/api/users', async function (req, res) {
+
+// Post user
+app.post("/api/users", async function(req, res) {
   const { username: reqUsername } = req.body;
+  
   try {
     let findOne = await User.findOne({
       username: reqUsername
     });
+    
     if (findOne) {
-      res.send('Username already taken. Please choose another one.');
+      res.send("Username already taken. Please choose another one.");
+      
     } else {
       const user = new User({
         username: reqUsername,
         exercise: []
       });
+      
       await user.save();
+      res.json({
+        username: user.username,
+        _id: user._id
+      });
     }
+    
   } catch (err) {
     console.error(err);
-    res.status(500).json('Server error...');
+    res.status(500).json("Server error...");
+  }
+});
+
+// Post exercise
+app.post("/api/users/:_id/exercises", async function(req, res) {
+  const {
+    userId: _id,
+    description,
+    duration,
+    dateYear,
+    dateMonth,
+    dateDay
+  } = req.body;
+  const date = new Date(`${dateYear}-${dateMonth}-${dateDay}`);
+  const exercise = { description, duration, date };
+  
+  try {
+    let findOne = await User.findOneAndUpdate({
+      
+    });
+    
+  } catch (err) {
+    console.error(err);
+    res.status(500).json("Server error...");
   }
 });
