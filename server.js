@@ -59,3 +59,6 @@ const userSchema = new Schema({
 const User = mongoose.model("User", userSchema);
 
 // User Routes
+app.post('/api/users', async function (req, res) {
+  const { username: reqUsername } = req.body;
+});
