@@ -26,7 +26,8 @@ const uri = process.env.MONGO_URI;
 mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  serverSelectionTimeoutMS: 5000
+  serverSelectionTimeoutMS: 5000,
+  useFindAndModify: false
 });
 
 const connection = mongoose.connection;
@@ -93,15 +94,10 @@ app.post("/api/users", async function(req, res) {
 
 // Post exercise
 app.post("/api/users/:_id/exercises", async function(req, res) {
-  const {
-    userId: _id,
-    description,
-    duration,
-    dateYear,
-    dateMonth,
-    dateDay
-  } = req.body;
-  const date = new Date(`${dateYear}-${dateMonth}-${dateDay}`);
+  let { userId: _id, description, duration, date } = req.body;
+
+  if (!date) date = new Date();
+
   const exercise = { description, duration, date };
 
   try {
