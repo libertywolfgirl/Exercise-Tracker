@@ -98,7 +98,9 @@ app.post("/api/users", async function(req, res) {
 app.post("/api/users/:_id/exercises", async function(req, res) {
   const { userId: _id, description, duration, date } = req.body;
   const newDate = date ? (new Date(date)).toDateString() : (new Date()).toDateString();
-
+  console.log(_id);
+  const userArray = await user.find({ _id: userId });
+  const userObject = userArray[0];
   const exercise = { description, duration, date: newDate };
   console.log(exercise);
   try {
