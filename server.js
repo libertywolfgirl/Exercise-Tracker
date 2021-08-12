@@ -65,28 +65,26 @@ const User = mongoose.model("User", userSchema);
 // Post user
 app.post("/api/users", async function(req, res) {
   const { username: reqUsername } = req.body;
-  
+
   try {
     let findOne = await User.findOne({
       username: reqUsername
     });
-    
+
     if (findOne) {
       res.send("Username already taken. Please choose another one.");
-      
     } else {
       const user = new User({
         username: reqUsername,
         exercise: []
       });
-      
+
       await user.save();
       res.json({
         username: user.username,
         _id: user._id
       });
     }
-    
   } catch (err) {
     console.error(err);
     res.status(500).json("Server error...");
@@ -105,12 +103,32 @@ app.post("/api/users/:_id/exercises", async function(req, res) {
   } = req.body;
   const date = new Date(`${dateYear}-${dateMonth}-${dateDay}`);
   const exercise = { description, duration, date };
-  
+
   try {
-    let findOne = await User.findOneAndUpdate({
-      
-    });
-    
+    let findOne = await User.findOneAndUpdate(
+      {
+        _id
+      },
+      {
+        $push: {
+          exercise
+        },
+        new: true
+      }
+    );
+
+    if (findOne) {
+      const { username } = findOne;
+      res.json({
+        _id,
+        username,
+        description,
+        duration,
+        date: date.toDateString()
+      });
+    } else {
+      res.send("Unknown id. Please try again.");
+    }
   } catch (err) {
     console.error(err);
     res.status(500).json("Server error...");
