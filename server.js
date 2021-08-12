@@ -105,18 +105,7 @@ app.post("/api/users/:_id/exercises", async function(req, res) {
   try {
     let findOne = await User.findOneAndUpdate(_id, exercise, {
       new: true
-    }
-      /*
-      {
-        _id
-      },
-      {
-        $push: {
-          exercise
-        },
-        new: true
-      }*/
-    );
+    });
 
     if (findOne) {
       const { username } = findOne;
@@ -125,7 +114,7 @@ app.post("/api/users/:_id/exercises", async function(req, res) {
         username,
         description,
         duration,
-        date: date.toDateString()
+        date
       });
     } else {
       res.send("Unknown id. Please try again.");
