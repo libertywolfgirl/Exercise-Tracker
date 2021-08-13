@@ -126,9 +126,9 @@ app.post("/api/users/:_id/exercises", async function(req, res) {
       res.json({
         _id,
         username,
-        description,
-        duration,
-        date: newDate
+        date: newDate,
+        duration: parseInt(duration),
+        description
       });
     } else {
       res.send("Unknown id. Please try again.");
