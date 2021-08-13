@@ -147,7 +147,7 @@ app.get("/api/users", async function(req, res) {
   try {
     const users = await User.find({}).exec();
     console.log(users);
-    if (users) { 
+    if (users) {
       const { username, _id } = users;
 
       res.json({
@@ -161,4 +161,8 @@ app.get("/api/users", async function(req, res) {
     console.error(err);
     res.status(500).json("Server error...");
   }
+});
+
+app.use((req, res, next) => {
+  res.status(404).send("Sorry can't find that!");
 });
