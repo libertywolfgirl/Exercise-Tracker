@@ -96,15 +96,24 @@ app.post("/api/users", async function(req, res) {
 
 // Post exercise
 app.post("/api/users/:_id/exercises", async function(req, res) {
-  console.log(req.body);
-  const { userId: _id, description, duration, date } = req.body;
+  const { description, duration, date } = req.body;
+  const { _id } = req.params;
   try {
     const newDate = date
       ? new Date(date).toDateString()
       : new Date().toDateString();
     const exercise = { description, duration: parseInt(duration), date: newDate };
-    
-    let findOne = await User.findByIdAndUpdate(_id, exercise, {
+    console.log(exercise);
+    const findOne = await User.findByIdAndUpdate({_id
+  },
+    {
+      // push in the log array the new object detailing the exercise
+      $push: {
+        exercise
+      }
+    },
+    {
+      // in the options set new to be true, as to have the function return the updated document
       new: true
     });
     console.log(findOne);
