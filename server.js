@@ -146,14 +146,7 @@ app.post("/api/users/:_id/exercises", async function(req, res) {
 app.get("/api/users", async function(req, res) {
   try {
     const users = await User.find({}).select({ __v: 0 });
-    users.exec((err, data) => {
-      if (err) {
-        console.error(err);
-        return res.json({ error: err });
-      } else {
-        res.json(data);
-      }
-    });
+    res.send(users);
   } catch (err) {
     console.error(err);
     res.status(500).json("Server error...");
