@@ -1,5 +1,4 @@
 const mongo = require("mongodb");
-const {ObjectId} = require('mongodb');
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const express = require("express");
@@ -96,38 +95,6 @@ app.post("/api/users", async function(req, res) {
 });
 
 // Post exercise
-/*app.post("/api/users/:_id/exercises", async function(req, res) {
-  const { description, duration, date } = req.body;
-  const { _id } = req.params;
-  try {
-    const newDate = date
-      ? new Date(date).toDateString()
-      : new Date().toDateString();
-    const exercise = { description, duration: parseInt(duration), date: newDate };
-    
-    const findOne = await User.findByIdAndUpdate(_id, exercise, {
-      new: true
-    });
-    console.log(findOne);
-    if (findOne) {
-      const { username } = findOne;
-
-      res.json({
-        _id,
-        username,
-        description,
-        duration,
-        date
-      });
-    } else {
-      res.send("Unknown id. Please try again.");
-    }
-  } catch (err) {
-    console.error(err);
-    res.status(500).json("Server error...");
-  }
-});*/
-
 app.post("/api/users/:_id/exercises", async function(req, res) {
   const { description, duration, date } = req.body;
   const { _id } = req.params;
@@ -135,18 +102,24 @@ app.post("/api/users/:_id/exercises", async function(req, res) {
     const newDate = date
       ? new Date(date).toDateString()
       : new Date().toDateString();
-    const userArray = await User.findById(_id);
-    const userObject = userArray[0];
-    console.log(userObject);
-    const exercise = { description, duration: parseInt(duration), date: newDate };
-    const exerciseArray = userObject.exercise;
-    exerciseArray.push(exercise);
-    const findOne = await User.findByIdAndUpdate(_id,
-    { exercise_logs: exerciseArray },
-    {
-      new: true
-    });
-    console.log(findOne);
+    const exercise = {
+      description,
+      duration: parseInt(duration),
+      date: newDate
+    };
+    const findOne = await User.findByIdAndUpdate(
+      {
+        _id
+      },
+      {
+        $push: {
+          exercise
+        }
+      },
+      {
+        new: true
+      }
+    );
     if (findOne) {
       const { username } = findOne;
 
@@ -155,7 +128,7 @@ app.post("/api/users/:_id/exercises", async function(req, res) {
         username,
         description,
         duration,
-        date
+        date: newDate
       });
     } else {
       res.send("Unknown id. Please try again.");
