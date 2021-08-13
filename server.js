@@ -138,3 +138,6 @@ app.post("/api/users/:_id/exercises", async function(req, res) {
     res.status(500).json("Server error...");
   }
 });
+
+// https://github.com/borntofrappe/FreeCodeCamp-Exercise-Tracker/blob/master/script.js
+// https://github.com/npwilliams09/FCC-Back-End/blob/master/Excercise%20Tracker/server.js
