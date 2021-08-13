@@ -145,15 +145,10 @@ app.post("/api/users/:_id/exercises", async function(req, res) {
 // Get all users
 app.get("/api/users", async function(req, res) {
   try {
-    const users = await User.find();
-    
-    if (users) {
-      const { username, _id } = users;
-
-      res.json({
-        username,
-        _id
-      });
+    const users = await User.find({}).exec();
+    console.log(users);
+    if (users) { 
+      res.json(data);
     } else {
       res.send("No users found.");
     }
