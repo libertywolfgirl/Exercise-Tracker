@@ -1,5 +1,4 @@
 const mongo = require("mongodb");
-const { ObjectId } = require("mongodb");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const express = require("express");
@@ -97,24 +96,21 @@ app.post("/api/users", async function(req, res) {
 
 // Post exercise
 app.post("/api/users/:_id/exercises", async function(req, res) {
-  const { userId, description, duration, date } = req.body;
-  const newDate = date
-    ? new Date(date).toDateString()
-    : new Date().toDateString();
-  const userArray = await User.find({ _id: userId });
-  const userObject = userArray[0];
-  console.log(userObject);
-  const exercise = { description, duration, date: newDate };
-
+  const { userId: _id, description, duration, date } = req.body;
   try {
-    let findOne = await User.findOneAndUpdate({ _id: userId }, exercise, {
+    const newDate = date
+      ? new Date(date).toDateString()
+      : new Date().toDateString();
+    console.log(_id);
+    const exercise = { description, duration, date: newDate };
+    
+    let findOne = await User.findOneAndUpdate(_id, exercise, {
       new: true
     });
-    console.log(findOne);
+
     if (findOne) {
       const { username } = findOne;
-      const _id = ObjectId(userId);
-      console.log(_id, username, description, duration, date);
+
       res.json({
         _id,
         username,
