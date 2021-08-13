@@ -96,18 +96,18 @@ app.post("/api/users", async function(req, res) {
 
 // Post exercise
 app.post("/api/users/:_id/exercises", async function(req, res) {
+  console.log(req.body);
   const { userId: _id, description, duration, date } = req.body;
   try {
     const newDate = date
       ? new Date(date).toDateString()
       : new Date().toDateString();
-    console.log(_id);
     const exercise = { description, duration: parseInt(duration), date: newDate };
     
-    let findOne = await User.findOneAndUpdate(_id, exercise, {
+    let findOne = await User.findByIdAndUpdate(_id, exercise, {
       new: true
     });
-
+    console.log(findOne);
     if (findOne) {
       const { username } = findOne;
 
