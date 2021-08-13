@@ -156,6 +156,22 @@ app.get("/api/users", async function(req, res) {
 });
 
 // Get exercise log
+app.get('/api/users/:_id/logs', async function(req, res) {
+  try {
+    const { _id, from, to, limit } = req.params;
+    const findOne = await User.findById({_id});
+    
+    if (findOne) {
+      const { username, exercise } = findOne;
+      let log = [...exercise];
+    } else {
+      res.send("Unknown id. Please try again.");
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json("Server error...");
+  }
+});
 
 // Not found
 app.use((req, res, next) => {
