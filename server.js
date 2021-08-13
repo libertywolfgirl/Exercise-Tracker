@@ -145,13 +145,17 @@ app.post("/api/users/:_id/exercises", async function(req, res) {
 // Get all users
 app.get("/api/users", async function(req, res) {
   try {
-    const users = await User.find({}).select("username").exec();
-    res.json({ users });
+    const users = await User.find({})
+      .select("username")
+      .exec();
+    res.send(users);
   } catch (err) {
     console.error(err);
     res.status(500).json("Server error...");
   }
 });
+
+// Get exercise log
 
 // Not found
 app.use((req, res, next) => {
