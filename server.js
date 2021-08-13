@@ -146,7 +146,7 @@ app.post("/api/users/:_id/exercises", async function(req, res) {
 app.get("/api/users", async function(req, res) {
   try {
     const users = await User.find();
-
+    
     if (users) {
       const { username, _id } = users;
 
