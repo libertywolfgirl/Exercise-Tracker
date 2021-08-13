@@ -102,7 +102,7 @@ app.post("/api/users/:_id/exercises", async function(req, res) {
       ? new Date(date).toDateString()
       : new Date().toDateString();
     console.log(_id);
-    const exercise = { description, duration, date: newDate };
+    const exercise = { description, duration: parseInt(duration), date: newDate };
     
     let findOne = await User.findOneAndUpdate(_id, exercise, {
       new: true
