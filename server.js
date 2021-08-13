@@ -148,7 +148,12 @@ app.get("/api/users", async function(req, res) {
     const users = await User.find({}).exec();
     console.log(users);
     if (users) { 
-      res.json(data);
+      const { username, _id } = users;
+
+      res.json({
+        username,
+        _id
+      });
     } else {
       res.send("No users found.");
     }
