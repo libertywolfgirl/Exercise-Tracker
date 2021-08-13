@@ -156,14 +156,34 @@ app.get("/api/users", async function(req, res) {
 });
 
 // Get exercise log
-app.get('/api/users/:_id/logs', async function(req, res) {
+app.get("/api/users/:_id/logs", async function(req, res) {
   try {
-    const { _id, from, to, limit } = req.params;
-    const findOne = await User.findById({_id});
-    
+    const { _id } = req.params;
+    const findOne = await User.findById({ _id });
+
     if (findOne) {
       const { username, exercise } = findOne;
       let log = [...exercise];
+
+      log = log
+        .sort(
+          (firstExercise, secondExercise) =>
+            firstExercise.date > secondExercise.date
+        )
+        .map(exercise => ({
+          description: exercise.description,
+          duration: parseInt(exercise.duration),
+          date: exercise.date.toDateString()
+        }));
+
+      const { length: count } = log;
+
+      res.json({
+        _id,
+        username,
+        count,
+        log
+      });
     } else {
       res.send("Unknown id. Please try again.");
     }
