@@ -145,24 +145,22 @@ app.post("/api/users/:_id/exercises", async function(req, res) {
 // Get all users
 app.get("/api/users", async function(req, res) {
   try {
-    const users = await User.find({}).exec();
-    console.log(users);
-    if (users) {
-      const { username, _id } = users;
-
-      res.json({
-        username,
-        _id
-      });
-    } else {
-      res.send("No users found.");
-    }
+    const users = await User.find({}).select({ __v: 0 });
+    users.exec((err, data) => {
+      if (err) {
+        console.error(err);
+        return res.json({ error: err });
+      } else {
+        res.json(data);
+      }
+    });
   } catch (err) {
     console.error(err);
     res.status(500).json("Server error...");
   }
 });
 
+// Not found
 app.use((req, res, next) => {
   res.status(404).send("Sorry can't find that!");
 });
