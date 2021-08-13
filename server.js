@@ -144,5 +144,16 @@ app.post("/api/users/:_id/exercises", async function(req, res) {
 
 // Get all users
 app.get('/api/users', async function (req, res) {
-  
+  try {
+    const users = await User.find();
+    
+    if (users) {
+      res.json({
+        
+      })
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json("Server error...");
+  }
 });
