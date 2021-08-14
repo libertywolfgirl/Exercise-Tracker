@@ -158,23 +158,37 @@ app.get("/api/users", async function(req, res) {
 // Get exercise log
 app.get("/api/users/:_id/logs", async function(req, res) {
   try {
-    const { _id } = req.params;
+    const { _id, from, to, limit } = req.params;
     const findOne = await User.findById({ _id });
 
     if (findOne) {
       const { username, exercise } = findOne;
       let log = [...exercise];
 
-      log = log
-        .sort(
-          (firstExercise, secondExercise) =>
-            firstExercise.date > secondExercise.date
-        )
-        .map(exercise => ({
-          description: exercise.description,
-          duration: parseInt(exercise.duration),
-          date: exercise.date.toDateString()
-        }));
+      if (from) {
+        const dateFrom = new Date(from);
+        log = log.filter(exercise => exercise.date > dateFrom);
+      }
+
+      if (to) {
+        const dateTo = new Date(to);
+        log = log.filter(exercise => exercise.date < dateTo);
+      }
+
+      log = log.sort(
+        (firstExercise, secondExercise) =>
+          firstExercise.date > secondExercise.date
+      );
+
+      if (limit) {
+        log = log.slice(0, limit);
+      }
+
+      log = log.map(exercise => ({
+        description: exercise.description,
+        duration: parseInt(exercise.duration),
+        date: exercise.date.toDateString()
+      }));
 
       const { length: count } = log;
 
