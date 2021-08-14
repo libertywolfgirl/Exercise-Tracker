@@ -139,9 +139,6 @@ app.post("/api/users/:_id/exercises", async function(req, res) {
   }
 });
 
-// https://github.com/borntofrappe/FreeCodeCamp-Exercise-Tracker/blob/master/script.js
-// https://github.com/npwilliams09/FCC-Back-End/blob/master/Excercise%20Tracker/server.js
-
 // Get all users
 app.get("/api/users", async function(req, res) {
   try {
@@ -158,7 +155,8 @@ app.get("/api/users", async function(req, res) {
 // Get exercise log
 app.get("/api/users/:_id/logs", async function(req, res) {
   try {
-    const { _id, from, to, limit } = req.params;
+    const { _id } = req.params;
+    const { from, to, limit } = req.query;
     const findOne = await User.findById({ _id });
 
     if (findOne) {
