@@ -62,7 +62,7 @@ body {
 }
 
 form {
-  margin-bottom: 4rem;
+  margin-bottom: 6rem;
   padding: 2rem;
   background-color: #87D37C;
   display: inline-block;
@@ -92,4 +92,26 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
   background-color: #FFFEC4;
+}
+
+.footer {
+  font-size: 1.4rem;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4rem;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  color: #364712;
+  font-weight: 500;
+}
+
+a:hover,
+a:active {
+  color: 314010;
+  font-weight: 700;
 }
