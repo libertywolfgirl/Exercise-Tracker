@@ -10,8 +10,10 @@ html {
 
 body {
   font-family: sans-serif;
-  color: #222;
-  background-color: #f5f5f5;
+  font-weight: 500;
+  line-height: 1;
+  color: #364712;
+  background-color: #d2e4d2;
 }
 
 .header {
@@ -25,8 +27,8 @@ body {
 }
 
 .heading {
-  font-size: 4.8rem;
-  font-weight: bold;
+  font-size: 5.2rem;
+  font-weight: 700;
 }
 
 .green-img {
@@ -36,7 +38,21 @@ body {
 .green-desc {
   font-size: 2.4rem;
   margin-bottom: 6rem;
-  max-width: 85rem;
+  max-width: 90rem;
+  line-height: 1.1;
+}
+
+.subtitle {
+  font-size: 4rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.exercise-tracker {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 form {
