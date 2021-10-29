@@ -32,8 +32,8 @@
       <h2 class="subtitle">Start living healthy!</h2>
       <div class="exercise-tracker">
         <form action="/api/users" method="post">
-          <h3>Create a New User</h3>
-          <p><code>POST /api/users</code></p>
+          <h3 class="tertiary-heading">Create a New User</h3>
+          <!--           <p><code>POST /api/users</code></p> -->
           <input
             id="uname"
             type="text"
@@ -43,8 +43,8 @@
           <input type="submit" value="Submit" />
         </form>
         <form id="exercise-form" method="post">
-          <h3>Add exercises</h3>
-          <p><code>POST /api/users/:_id/exercises</code></p>
+          <h3 class="tertiary-heading">Add exercises</h3>
+          <!--           <p><code>POST /api/users/:_id/exercises</code></p> -->
           <input id="uid" type="text" name=":_id" placeholder=":_id" />
           <input
             id="desc"
@@ -67,7 +67,7 @@
           <input type="submit" value="Submit" />
         </form>
       </div>
-      <p>
+      <!--       <p>
         <strong>GET user's exercise log: </strong>
         <code>GET /api/users/:_id/logs?[&amp;from][&amp;to][&amp;limit]</code>
       </p>
@@ -75,7 +75,7 @@
       <p>
         <strong>from, to</strong> = dates (yyyy-mm-dd); <strong>limit</strong> =
         number
-      </p>
+      </p> -->
     </div>
     <script>
       const exerciseForm = document.getElementById("exercise-form");
