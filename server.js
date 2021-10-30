@@ -66,11 +66,10 @@ const User = mongoose.model("User", userSchema);
 // User Routes
 
 // Post user
-app.post("/api/users", async function(req, res) {
+app.post("/api/users", function(req, res) {
   const { username: reqUsername } = req.body;
-
-  try {
-    let findOne = await User.findOne({
+  
+  let findOne = User.findOne({
       username: reqUsername
     });
 
@@ -81,18 +80,44 @@ app.post("/api/users", async function(req, res) {
         username: reqUsername,
         exercise: []
       });
-
-      await user.save();
-      console.log(user);
-      res.json({
-        username: user.username,
+    
+      
+      user.save((err, data) => {
+          if (err || data === null) {
+            console.error(err);
+          } else {
+            return res.json({
+              username: user.username,
         _id: user._id
-      });
+            });
+          }
+        });
     }
-  } catch (err) {
-    console.error(err);
-    res.status(500).json("Server error...");
-  }
+      
+
+//   try {
+//     let findOne = await User.findOne({
+//       username: reqUsername
+//     });
+
+//     if (findOne) {
+//       res.send("Username already taken. Please choose another one.");
+//     } else {
+//       const user = new User({
+//         username: reqUsername,
+//         exercise: []
+//       });
+
+//       await user.save();
+//       res.json({
+//         username: user.username,
+//         _id: user._id
+//       });
+//     }
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json("Server error...");
+//   }
 });
 
 // Post exercise
