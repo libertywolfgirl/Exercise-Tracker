@@ -68,7 +68,7 @@ const User = mongoose.model("User", userSchema);
 // Post user
 app.post("/api/users", async function(req, res) {
   const { username: reqUsername } = req.body;
-  console.log(req.body);
+  
   try {
     let findOne = await User.findOne({
       username: reqUsername

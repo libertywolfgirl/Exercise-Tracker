@@ -113,6 +113,7 @@
     </div>
     <script>
       const exerciseForm = document.getElementById("exercise-form");
+      const usernameTextArea = document.getElementById("uname");
 
       exerciseForm.addEventListener("submit", () => {
         const userId = document.getElementById("uid").value;
@@ -131,16 +132,18 @@
       });
 
       async function getId() {
+        const username = { username: usernameTextArea.value };
         const data = await fetch("/api/users", {
           method: "POST",
           headers: {
             Accept: "application/json",
             "Content-type": "application/json"
-          }
+          },
+          body: JSON.stringify(username)
         });
-        
+
         const parsed = await data.json();
-        
+
         if (parsed.error) {
           errorMsg.innerHTML = `<code>${JSON.stringify(
             parsed,
@@ -149,11 +152,11 @@
           )}</code>`;
           return;
         }
-        
-        document.getElementById('signUp').textContent = parsed._id;
+
+        document.getElementById("signUp").textContent = parsed._id;
       }
-      
-      document.getElementById("id-submit").addEventListener("click", (e) => {
+
+      document.getElementById("id-submit").addEventListener("click", e => {
         e.preventDefault();
         getId();
       });
@@ -161,4 +164,3 @@
   </body>
 </html>
 <!-- 617c9cbe92108100f2953815 -->
-<!--  action="/api/users" method="post" -->
