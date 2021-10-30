@@ -66,7 +66,7 @@
           />
           <input type="submit" value="Submit" />
         </form>
-        <form id="log-form" action="/api/users/" method="get">
+        <form id="log-form" method="get">
           <h3 class="tertiary-heading">Retrieve your logs</h3>
           <!--           <p><code>POST /api/users/:_id/exercises</code></p> -->
           <input id="id" type="text" name=":_id" placeholder=":_id" />
@@ -76,12 +76,7 @@
             name="from"
             placeholder="from (yyyy-mm-dd)"
           />
-          <input
-            id="to"
-            type="text"
-            name="to"
-            placeholder="to (yyyy-mm-dd)"
-          />
+          <input id="to" type="text" name="to" placeholder="to (yyyy-mm-dd)" />
           <input
             id="limit"
             type="text"
@@ -120,6 +115,16 @@
 
         exerciseForm.submit();
       });
+
+      const logForm = document.getElementById("log-form");
+
+      logForm.addEventListener("submit", () => {
+        const userId = document.getElementById("id").value;
+        logForm.action = `/api/users/${userId}/logs`;
+
+        logForm.submit();
+      });
     </script>
   </body>
 </html>
+<!-- 617c9cbe92108100f2953815 -->
