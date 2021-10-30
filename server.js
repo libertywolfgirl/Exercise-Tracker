@@ -80,8 +80,7 @@ app.post("/api/users", async function(req, res) {
       const user = new User({
         username: reqUsername,
         exercise: []
-      });
-
+      });      
       let saveUser = await user.save();
       
       res.json({
