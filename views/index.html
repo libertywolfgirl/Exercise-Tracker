@@ -40,7 +40,7 @@
             name="username"
             placeholder="username"
           />
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Submit" class="id-submit" />
         </form>
         <form id="exercise-form" method="post">
           <h3 class="tertiary-heading">Add exercises</h3>
@@ -86,6 +86,11 @@
           <input type="submit" value="Submit" />
         </form>
       </div>
+      <div class="parsed">
+        <p class="signUp">
+          Use your id to create your exercise logs.
+        </p>
+      </div>
       <footer class="footer">
         <p>
           Visit all my friends
@@ -124,6 +129,29 @@
 
         logForm.submit();
       });
+
+      async function getId() {
+        const data = await fetch("/api/users", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-type": "application/json"
+          }
+        });
+        const parsed = await data.json();
+        console.log(parsed);
+        if (parsed.error) {
+          errorMsg.innerHTML = `<code>${JSON.stringify(
+            parsed,
+            null,
+            2
+          )}</code>`;
+          return;
+        }
+        document.getElementById('signUp').textContent = parsed._id;
+      }
+      
+      document.getElementById("id-submit").addEventListener("click", getId);
     </script>
   </body>
 </html>
