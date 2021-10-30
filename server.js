@@ -83,7 +83,7 @@ app.post("/api/users", async function(req, res) {
       });
 
       let saveUser = await user.save();
-      console.log(saveUser);
+      
       res.json({
         username: saveUser.username,
         _id: saveUser._id

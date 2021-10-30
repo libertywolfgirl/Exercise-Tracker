@@ -138,8 +138,9 @@
             "Content-type": "application/json"
           }
         });
+        
         const parsed = await data.json();
-        console.log(parsed);
+        
         if (parsed.error) {
           errorMsg.innerHTML = `<code>${JSON.stringify(
             parsed,
@@ -148,10 +149,14 @@
           )}</code>`;
           return;
         }
+        
         document.getElementById('signUp').textContent = parsed._id;
       }
       
-      document.getElementById("id-submit").addEventListener("click", getId);
+      document.getElementById("id-submit").addEventListener("click", (e) => {
+        e.preventDefault();
+        getId();
+      });
     </script>
   </body>
 </html>
