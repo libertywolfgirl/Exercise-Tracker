@@ -66,10 +66,11 @@ const User = mongoose.model("User", userSchema);
 // User Routes
 
 // Post user
-app.post("/api/users", function(req, res) {
+app.post("/api/users", async function(req, res) {
   const { username: reqUsername } = req.body;
-  
-  let findOne = User.findOne({
+
+  try {
+    let findOne = await User.findOne({
       username: reqUsername
     });
 
@@ -80,44 +81,18 @@ app.post("/api/users", function(req, res) {
         username: reqUsername,
         exercise: []
       });
-    
-      
-      user.save((err, data) => {
-          if (err || data === null) {
-            console.error(err);
-          } else {
-            return res.json({
-              username: user.username,
-        _id: user._id
-            });
-          }
-        });
+
+      let saveUser = await user.save();
+      console.log(saveUser);
+      res.json({
+        username: saveUser.username,
+        _id: saveUser._id
+      });
     }
-      
-
-//   try {
-//     let findOne = await User.findOne({
-//       username: reqUsername
-//     });
-
-//     if (findOne) {
-//       res.send("Username already taken. Please choose another one.");
-//     } else {
-//       const user = new User({
-//         username: reqUsername,
-//         exercise: []
-//       });
-
-//       await user.save();
-//       res.json({
-//         username: user.username,
-//         _id: user._id
-//       });
-//     }
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json("Server error...");
-//   }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json("Server error...");
+  }
 });
 
 // Post exercise
