@@ -66,27 +66,27 @@
           />
           <input type="submit" value="Submit" />
         </form>
-        <form id="log-form" method="get">
+        <form id="log-form" action="/api/users/" method="get">
           <h3 class="tertiary-heading">Retrieve your logs</h3>
           <!--           <p><code>POST /api/users/:_id/exercises</code></p> -->
-          <input id="uid" type="text" name=":_id" placeholder=":_id" />
+          <input id="id" type="text" name=":_id" placeholder=":_id" />
           <input
-            id="desc"
+            id="from"
             type="text"
-            name="description"
-            placeholder="description*"
+            name="from"
+            placeholder="from (yyyy-mm-dd)"
           />
           <input
-            id="dur"
+            id="to"
             type="text"
-            name="duration"
-            placeholder="duration* (mins.)"
+            name="to"
+            placeholder="to (yyyy-mm-dd)"
           />
           <input
-            id="dat"
+            id="limit"
             type="text"
-            name="date"
-            placeholder="date (yyyy-mm-dd)"
+            name="limit"
+            placeholder="limit (number)"
           />
           <input type="submit" value="Submit" />
         </form>
