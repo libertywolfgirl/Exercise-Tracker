@@ -56,13 +56,21 @@ async function getLog() {
     console.error(parsed.error);
     return;
   }
-  console.log(parsed.log);
-  var wrapperDiv = document.createElement("div");
-  parsed.log.forEach(function(friend) {
+
+  const wrapperDiv = document.createElement("div");
+  parsed.log.forEach(function(log) {
     const logDiv = document.createElement("div");
     logDiv.className = "parsed-data";
-    const logDescription = logDiv.appendChild(document.createTextNode(parsed.log.description));
+    const logDescription = logDiv.appendChild(
+      document.createTextNode(log.description)
+    );
     logDescription.className = "parsed";
+    const logDuration = logDiv.appendChild(
+      document.createTextNode(log.duration)
+    );
+    logDuration.className = "parsed";
+    const logDate = logDiv.appendChild(document.createTextNode(log.date));
+    logDate.className = "parsed";
     wrapperDiv.appendChild(logDiv);
   });
   document.body.appendChild(wrapperDiv);
