@@ -1,5 +1,3 @@
-console.log('hello');
-
 const exerciseForm = document.getElementById("exercise-form");
 const usernameTextArea = document.getElementById("uname");
 
