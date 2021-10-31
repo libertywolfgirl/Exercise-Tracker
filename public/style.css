@@ -61,7 +61,7 @@ body {
   margin-bottom: 2rem;
 }
 
-form {
+form, .parsed-data {
   margin-bottom: 6rem;
   padding: 2rem;
   background-color: #87D37C;
@@ -114,4 +114,21 @@ a:hover,
 a:active {
   color: 314010;
   font-weight: 700;
+}
+
+.results {
+  display: flex;
+}
+
+.parsed-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.8rem;
+  padding: 2.2rem;
+}
+
+.parsed {
+  display: inline-block;
+  font-size: 1.6rem;
 }

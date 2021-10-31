@@ -35,7 +35,8 @@ async function getId() {
     return;
   }
 
-  document.getElementById("signUp").textContent = parsed._id;
+  document.getElementById("yourId").textContent = parsed._id;
+  document.getElementById("yourUsername").textContent = parsed.username;
 }
 
 document.getElementById("id-submit").addEventListener("click", e => {
