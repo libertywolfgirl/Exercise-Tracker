@@ -56,8 +56,16 @@ async function getLog() {
     console.error(parsed.error);
     return;
   }
-
-  console.log(parsed);
+  console.log(parsed.log);
+  var wrapperDiv = document.createElement("div");
+  parsed.log.forEach(function(friend) {
+    const logDiv = document.createElement("div");
+    logDiv.className = "parsed-data";
+    const logDescription = logDiv.appendChild(document.createTextNode(parsed.log.description));
+    logDescription.className = "parsed";
+    wrapperDiv.appendChild(logDiv);
+  });
+  document.body.appendChild(wrapperDiv);
 }
 
 document.getElementById("id-submit").addEventListener("click", e => {
