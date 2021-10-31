@@ -118,6 +118,7 @@ a:active {
 
 .results {
   display: flex;
+  justify-content: space-around;
 }
 
 .parsed-data {
