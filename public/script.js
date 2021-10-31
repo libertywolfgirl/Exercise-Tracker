@@ -40,14 +40,14 @@ async function getId() {
 }
 
 async function getLog() {
-  const _id = { _id: usernameTextArea.value };
-  console.log(_id);
+  const _id = idTextArea.value;
+
   const data = await fetch(`/api/users/${_id}/logs`, {
     method: "GET",
     headers: {
       Accept: "application/json",
       "Content-type": "application/json"
-    },
+    }
   });
 
   const parsed = await data.json();
