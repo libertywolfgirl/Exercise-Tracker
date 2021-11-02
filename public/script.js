@@ -57,7 +57,7 @@ async function getExercise() {
     },
     body: JSON.stringify(description, duration, date)
   });
-  console.log(data);
+  
   const parsed = await data.json();
   console.log(parsed);
   if (parsed.error) {

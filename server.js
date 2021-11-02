@@ -97,10 +97,11 @@ app.post("/api/users", async function(req, res) {
 
 // Post exercise
 app.post("/api/users/:_id/exercises", async function(req, res) {
-  console.log('hello');
+  console.log(1);
   const { description, duration, date } = req.body;
   const { _id } = req.params;
   try {
+    console.log(2);
     const newDate = date
       ? new Date(date).toDateString()
       : new Date().toDateString();
@@ -109,7 +110,7 @@ app.post("/api/users/:_id/exercises", async function(req, res) {
       duration: parseInt(duration),
       date: newDate
     };
-    console.log(exercise);
+    console.log(3);
     const findOne = await User.findByIdAndUpdate(
       {
         _id
@@ -123,6 +124,7 @@ app.post("/api/users/:_id/exercises", async function(req, res) {
         new: true
       }
     );
+    console.log(4);
     if (findOne) {
       const { username } = findOne;
 
