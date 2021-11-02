@@ -45,25 +45,27 @@ async function getId() {
 
 async function getExercise() {
   const _id = exerciseId.value;
-  const description = { description: descriptionTextArea.value };
-  const duration = { duration: durationTextArea.value };
-  const date = { date: dateTextArea.value };
-  const exercise = { description, duration, date };
+  const exercise = {
+    description: descriptionTextArea.value,
+    duration: parseInt(durationTextArea.value),
+    date: dateTextArea.value
+  };
+
   const data = await fetch(`/api/users/${_id}/exercises`, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-type": "application/json"
     },
-    body: JSON.stringify(description, duration, date)
+    body: JSON.stringify(exercise)
   });
-  
+
   const parsed = await data.json();
   console.log(parsed);
   if (parsed.error) {
     console.error(parsed.error);
     return;
-  } 
+  }
 }
 
 async function getLog() {
