@@ -3,6 +3,9 @@ const usernameTextArea = document.getElementById("uname");
 const idTextArea = document.getElementById("id");
 const exerciseId = document.getElementById("uid");
 const logForm = document.getElementById("log-form");
+const descriptionTextArea = document.getElementById("desc");
+const durationTextArea = document.getElementById("dur");
+const dateTextArea = document.getElementById("dat");
 
 exerciseForm.addEventListener("submit", () => {
   const userId = exerciseId.value;
@@ -42,13 +45,17 @@ async function getId() {
 
 async function getExercise() {
   const _id = exerciseId.value;
-
+  const description = { description: descriptionTextArea.value };
+  const duration = { duration: durationTextArea.value };
+  const date = { date: dateTextArea.value };
+  c
   const data = await fetch(`/api/users/${_id}/exercises`, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-type": "application/json"
-    }
+    },
+    body: JSON.stringify(description, date), duration
   });
 
   const parsed = await data.json();
@@ -99,6 +106,11 @@ async function getLog() {
 document.getElementById("id-submit").addEventListener("click", e => {
   e.preventDefault();
   getId();
+});
+
+document.getElementById("exercise-submit").addEventListener("click", e => {
+  e.preventDefault();
+  getExercise();
 });
 
 document.getElementById("log-submit").addEventListener("click", e => {
