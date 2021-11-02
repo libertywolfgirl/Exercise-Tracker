@@ -48,18 +48,18 @@ async function getExercise() {
   const description = { description: descriptionTextArea.value };
   const duration = { duration: durationTextArea.value };
   const date = { date: dateTextArea.value };
-  c
+  
   const data = await fetch(`/api/users/${_id}/exercises`, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-type": "application/json"
     },
-    body: JSON.stringify(description, date), duration
+    body: JSON.stringify(description, duration, date)
   });
 
   const parsed = await data.json();
-
+  console.log(parsed);
   if (parsed.error) {
     console.error(parsed.error);
     return;
