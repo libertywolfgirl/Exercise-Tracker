@@ -97,6 +97,7 @@ app.post("/api/users", async function(req, res) {
 
 // Post exercise
 app.post("/api/users/:_id/exercises", async function(req, res) {
+  console.log('hello');
   const { description, duration, date } = req.body;
   const { _id } = req.params;
   try {
@@ -108,6 +109,7 @@ app.post("/api/users/:_id/exercises", async function(req, res) {
       duration: parseInt(duration),
       date: newDate
     };
+    console.log(exercise);
     const findOne = await User.findByIdAndUpdate(
       {
         _id
