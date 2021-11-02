@@ -1,17 +1,18 @@
 const exerciseForm = document.getElementById("exercise-form");
 const usernameTextArea = document.getElementById("uname");
 const idTextArea = document.getElementById("id");
+const exerciseId = document.getElementById("uid");
 const logForm = document.getElementById("log-form");
 
 exerciseForm.addEventListener("submit", () => {
-  const userId = document.getElementById("uid").value;
+  const userId = exerciseId.value;
   exerciseForm.action = `/api/users/${userId}/exercises`;
 
   exerciseForm.submit();
 });
 
 logForm.addEventListener("submit", () => {
-  const userId = document.getElementById("id").value;
+  const userId = idTextArea.value;
   logForm.action = `/api/users/${userId}/logs`;
 
   logForm.submit();
@@ -39,6 +40,25 @@ async function getId() {
   document.getElementById("yourUsername").textContent = parsed.username;
 }
 
+async function getExercise() {
+  const _id = exerciseId.value;
+
+  const data = await fetch(`/api/users/${_id}/exercises`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-type": "application/json"
+    }
+  });
+
+  const parsed = await data.json();
+
+  if (parsed.error) {
+    console.error(parsed.error);
+    return;
+  } 
+}
+
 async function getLog() {
   const _id = idTextArea.value;
 
@@ -51,7 +71,7 @@ async function getLog() {
   });
 
   const parsed = await data.json();
-
+  console.log(parsed);
   if (parsed.error) {
     console.error(parsed.error);
     return;
