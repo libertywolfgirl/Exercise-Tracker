@@ -48,7 +48,7 @@ async function getExercise() {
   const description = { description: descriptionTextArea.value };
   const duration = { duration: durationTextArea.value };
   const date = { date: dateTextArea.value };
-  
+  const exercise = { description, duration, date };
   const data = await fetch(`/api/users/${_id}/exercises`, {
     method: "POST",
     headers: {
