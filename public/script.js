@@ -66,14 +66,17 @@ async function getExercise() {
     console.error(parsed.error);
     return;
   }
-  
-  const wrapperDiv = document.getElementById('parsed');
-  const descriptionDiv = wrapperDiv.appendChild(document.createTextNode(parsed.description));
-  descriptionDiv.classname = "parsed";
-  const durationDiv = wrapperDiv.appendChild(document.createTextNode(parsed.duration));
-  durationDiv.classname = "parsed";
-  const dateDiv = wrapperDiv.appendChild(document.createTextNode(parsed.date));
-  dateDiv.classname = "parsed";
+
+  const wrapperDiv = document.getElementById("parsed");
+  const descriptionDiv = wrapperDiv.appendChild(document.createElement("p"));
+  descriptionDiv.textContent = parsed.description;
+  descriptionDiv.className = "parsed";
+  const durationnDiv = wrapperDiv.appendChild(document.createElement("p"));
+  durationnDiv.textContent = parsed.durationn;
+  durationnDiv.className = "parsed";
+  const dateDiv = wrapperDiv.appendChild(document.createElement("p"));
+  dateDiv.textContent = parsed.date;
+  dateDiv.className = "parsed";
 }
 
 async function getLog() {
@@ -98,15 +101,14 @@ async function getLog() {
   parsed.log.forEach(function(log) {
     const logDiv = document.createElement("div");
     logDiv.className = "parsed-data";
-    const logDescription = logDiv.appendChild(
-      document.createTextNode(log.description)
-    );
+    const logDescription = logDiv.appendChild(document.createElement("p"));
+    logDescription.textContent = log.description;
     logDescription.className = "parsed";
-    const logDuration = logDiv.appendChild(
-      document.createTextNode(log.duration)
-    );
+    const logDuration = logDiv.appendChild(document.createElement("p"));
+    logDuration.textContent = log.duration;
     logDuration.className = "parsed";
-    const logDate = logDiv.appendChild(document.createTextNode(log.date));
+    const logDate = logDiv.appendChild(document.createElement("p"));
+    logDate.textContent = log.date;
     logDate.className = "parsed";
     wrapperDiv.appendChild(logDiv);
   });
