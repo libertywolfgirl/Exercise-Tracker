@@ -6,7 +6,6 @@ const logForm = document.getElementById("log-form");
 const descriptionTextArea = document.getElementById("desc");
 const durationTextArea = document.getElementById("dur");
 const dateTextArea = document.getElementById("dat");
-const resultsDiv = document.getElementById("results");
 
 exerciseForm.addEventListener("submit", () => {
   const userId = exerciseId.value;
@@ -70,7 +69,7 @@ async function getExercise() {
     return;
   }
 
-  const wrapperDiv = document.createElement("div");
+  const wrapperDiv = document.getElementById("results");
   wrapperDiv.className = "log-container";
   const logDiv = document.createElement("div");
   logDiv.className = "parsed-data";
@@ -84,7 +83,6 @@ async function getExercise() {
   dateDiv.textContent = `Date: ${parsed.date}`;
   dateDiv.className = "parsed";
   wrapperDiv.appendChild(logDiv);
-  document.body.appendChild(wrapperDiv);
 }
 
 async function getLog() {
@@ -105,7 +103,7 @@ async function getLog() {
     return;
   }
 
-  const wrapperDiv = document.createElement("div");
+  const wrapperDiv = document.getElementById("results");
   wrapperDiv.className = "log-container";
   parsed.log.forEach(function(log) {
     const logDiv = document.createElement("div");
@@ -121,7 +119,6 @@ async function getLog() {
     logDate.className = "parsed";
     wrapperDiv.appendChild(logDiv);
   });
-  document.body.appendChild(wrapperDiv);
 }
 
 document.getElementById("id-submit").addEventListener("click", e => {
