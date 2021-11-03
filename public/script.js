@@ -80,6 +80,8 @@ async function getExercise() {
   const dateDiv = logDiv.appendChild(document.createElement("p"));
   dateDiv.textContent = `Date: ${parsed.date}`;
   dateDiv.className = "parsed";
+  wrapperDiv.appendChild(logDiv);
+  document.body.appendChild(wrapperDiv);
 }
 
 async function getLog() {
