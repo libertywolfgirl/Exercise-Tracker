@@ -61,7 +61,7 @@ body {
   margin-bottom: 2rem;
 }
 
-form, .parsed-data, .credentials, .log-container {
+form, .parsed-data, .credentials {
   margin-bottom: 6rem;
   padding: 2rem;
   background-color: #87D37C;
@@ -121,7 +121,7 @@ a:active {
   justify-content: space-around;
 }
 
-.credentials {
+.credentials, .parsed-data {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -131,6 +131,8 @@ a:active {
 
 .log-container {
   display: flex;
+  width: 100%;
+  flex-flow: row wrap;
   gap: 2.4rem;
   padding: 4.8rem;
 }

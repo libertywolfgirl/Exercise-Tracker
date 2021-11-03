@@ -68,6 +68,7 @@ async function getExercise() {
   }
 
   const wrapperDiv = document.createElement("div");
+  wrapperDiv.className = "log-container";
   const logDiv = document.createElement("div");
   logDiv.className = "parsed-data";
   const descriptionDiv = logDiv.appendChild(document.createElement("p"));
