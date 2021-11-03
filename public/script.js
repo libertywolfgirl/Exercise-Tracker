@@ -40,7 +40,9 @@ async function getId() {
   }
 
   document.getElementById("yourId").textContent = `id: ${parsed._id}`;
-  document.getElementById("yourUsername").textContent = `username: ${parsed.username}`;
+  document.getElementById(
+    "yourUsername"
+  ).textContent = `username: ${parsed.username}`;
 }
 
 async function getExercise() {

@@ -100,7 +100,7 @@ input[type="submit"]:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: rem;
+  margin-bottom: 6rem;
 }
 
 a:link,
@@ -121,7 +121,8 @@ a:active {
   justify-content: space-around;
 }
 
-.credentials, .parsed-data {
+.credentials,
+.parsed-data {
   display: flex;
   flex-direction: column;
   justify-content: center;
