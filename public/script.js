@@ -68,14 +68,15 @@ async function getExercise() {
   }
 
   const wrapperDiv = document.createElement("div");
-  wrapperDiv.className = "exercise-container";
-  const descriptionDiv = wrapperDiv.appendChild(document.createElement("p"));
+  const logDiv = document.createElement("div");
+  logDiv.className = "parsed-data";
+  const descriptionDiv = logDiv.appendChild(document.createElement("p"));
   descriptionDiv.textContent = `Exercise: ${parsed.description}`;
   descriptionDiv.className = "parsed";
-  const durationDiv = wrapperDiv.appendChild(document.createElement("p"));
+  const durationDiv = logDiv.appendChild(document.createElement("p"));
   durationDiv.textContent = `Duration: ${parsed.duration} minutes`;
   durationDiv.className = "parsed";
-  const dateDiv = wrapperDiv.appendChild(document.createElement("p"));
+  const dateDiv = logDiv.appendChild(document.createElement("p"));
   dateDiv.textContent = `Date: ${parsed.date}`;
   dateDiv.className = "parsed";
 }
@@ -99,7 +100,7 @@ async function getLog() {
   }
 
   const wrapperDiv = document.createElement("div");
-  wrapperDiv.className = "exercise-container";
+  wrapperDiv.className = "log-container";
   parsed.log.forEach(function(log) {
     const logDiv = document.createElement("div");
     logDiv.className = "parsed-data";
