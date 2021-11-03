@@ -6,6 +6,7 @@ const logForm = document.getElementById("log-form");
 const descriptionTextArea = document.getElementById("desc");
 const durationTextArea = document.getElementById("dur");
 const dateTextArea = document.getElementById("dat");
+const resultsDiv = document.getElementById("results");
 
 exerciseForm.addEventListener("submit", () => {
   const userId = exerciseId.value;
