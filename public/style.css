@@ -126,8 +126,8 @@ a:active {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 1.8rem;
-  padding: 2rem;
+  gap: 2rem;
+  padding: 4rem;
   background-color: #87D37C;
   width: 100%;
   max-width: 34rem;
@@ -136,7 +136,6 @@ a:active {
 
 .credentials {
   margin-bottom: 6rem;
-  padding: 6rem;
 }
 
 .log-container {
