@@ -66,6 +66,14 @@ async function getExercise() {
     console.error(parsed.error);
     return;
   }
+  
+  const wrapperDiv = document.getElementById('parsed');
+  const descriptionDiv = wrapperDiv.appendChild(document.createTextNode(parsed.description));
+  descriptionDiv.classname = "parsed";
+  const durationDiv = wrapperDiv.appendChild(document.createTextNode(parsed.duration));
+  durationDiv.classname = "parsed";
+  const dateDiv = wrapperDiv.appendChild(document.createTextNode(parsed.date));
+  dateDiv.classname = "parsed";
 }
 
 async function getLog() {
