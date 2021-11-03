@@ -121,7 +121,7 @@ a:active {
   justify-content: space-around;
 }
 
-.parsed-data {
+.parsed-data, .exercise-container {
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -39,8 +39,8 @@ async function getId() {
     return;
   }
 
-  document.getElementById("yourId").textContent = parsed._id;
-  document.getElementById("yourUsername").textContent = parsed.username;
+  document.getElementById("yourId").textContent = `id: ${parsed._id}`;
+  document.getElementById("yourUsername").textContent = `username: ${parsed.username}`;
 }
 
 async function getExercise() {
@@ -67,15 +67,16 @@ async function getExercise() {
     return;
   }
 
-  const wrapperDiv = document.getElementById("parsed");
+  const wrapperDiv = document.createElement("div");
+  wrapperDiv.className = "exercise-container";
   const descriptionDiv = wrapperDiv.appendChild(document.createElement("p"));
-  descriptionDiv.textContent = parsed.description;
+  descriptionDiv.textContent = `Exercise: ${parsed.description}`;
   descriptionDiv.className = "parsed";
-  const durationnDiv = wrapperDiv.appendChild(document.createElement("p"));
-  durationnDiv.textContent = parsed.durationn;
-  durationnDiv.className = "parsed";
+  const durationDiv = wrapperDiv.appendChild(document.createElement("p"));
+  durationDiv.textContent = `Duration: ${parsed.duration} minutes`;
+  durationDiv.className = "parsed";
   const dateDiv = wrapperDiv.appendChild(document.createElement("p"));
-  dateDiv.textContent = parsed.date;
+  dateDiv.textContent = `Date: ${parsed.date}`;
   dateDiv.className = "parsed";
 }
 
@@ -98,17 +99,18 @@ async function getLog() {
   }
 
   const wrapperDiv = document.createElement("div");
+  wrapperDiv.className = "exercise-container";
   parsed.log.forEach(function(log) {
     const logDiv = document.createElement("div");
     logDiv.className = "parsed-data";
     const logDescription = logDiv.appendChild(document.createElement("p"));
-    logDescription.textContent = log.description;
+    logDescription.textContent = `Exercise: ${log.description}`;
     logDescription.className = "parsed";
     const logDuration = logDiv.appendChild(document.createElement("p"));
-    logDuration.textContent = log.duration;
+    logDuration.textContent = `Duration: ${log.duration} minutes`;
     logDuration.className = "parsed";
     const logDate = logDiv.appendChild(document.createElement("p"));
-    logDate.textContent = log.date;
+    logDate.textContent = `Date: ${log.date}`;
     logDate.className = "parsed";
     wrapperDiv.appendChild(logDiv);
   });
