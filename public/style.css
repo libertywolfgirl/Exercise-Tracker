@@ -27,7 +27,7 @@ body {
 }
 
 .heading {
-  font-size: 5.2rem;
+  font-size: 6rem;
   font-weight: 700;
 }
 
@@ -69,6 +69,8 @@ form {
   width: 100%;
   max-width: 34rem;
   border-radius: 5px;
+  border: solid 1px #364712;
+  box-shadow: 0px 10px 15px 5px rgba(54,71,18,0.2);
 }
 
 input {
@@ -132,6 +134,8 @@ a:active {
   width: 100%;
   max-width: 34rem;
   border-radius: 5px;
+  border: solid 1px #364712;
+  box-shadow: 0px 10px 15px 5px rgba(54,71,18,0.2);
 }
 
 .credentials {
