@@ -35,7 +35,6 @@
       <div class="exercise-tracker">
         <form action="/api/users" method="post">
           <h3 class="tertiary-heading">Create a New User</h3>
-          <!--           <p><code>POST /api/users</code></p> -->
           <input
             id="uname"
             type="text"
@@ -46,7 +45,6 @@
         </form>
         <form id="exercise-form" method="post">
           <h3 class="tertiary-heading">Add exercises</h3>
-          <!--           <p><code>POST /api/users/:_id/exercises</code></p> -->
           <input id="uid" type="text" name=":_id" placeholder=":_id" />
           <input
             id="desc"
@@ -70,7 +68,6 @@
         </form>
         <form id="log-form" method="get">
           <h3 class="tertiary-heading">Retrieve your logs</h3>
-          <!--           <p><code>POST /api/users/:_id/exercises</code></p> -->
           <input id="id" type="text" name=":_id" placeholder=":_id" />
           <input
             id="from"
@@ -108,15 +105,6 @@
           >!
         </p>
       </footer>
-      <!--       <p>
-        <strong>GET user's exercise log: </strong>
-        <code>GET /api/users/:_id/logs?[&amp;from][&amp;to][&amp;limit]</code>
-      </p>
-      <p><strong>[ ]</strong> = optional</p>
-      <p>
-        <strong>from, to</strong> = dates (yyyy-mm-dd); <strong>limit</strong> =
-        number
-      </p> -->
     </div>
   </body>
 </html>
